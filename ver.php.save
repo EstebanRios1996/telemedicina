@@ -1,0 +1,125 @@
+<?php
+session_start();
+if (!$_SESSION){
+	header('Location: BDS.php');
+}
+else{
+	$nombreusuario=$_SESSION['nombreusuario'] ;
+	$password=$_SESSION['password'];
+	$servidor= "localhost";
+	$db= "prueba";
+	$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
+}
+?>
+
+
+
+<?php 
+	if (isset($_POST['cerrar'])){
+	session_destroy();
+	session_commit();
+	$_SESSION['nombreusuario'] ='';
+	$_SESSION['password']='';
+	header('Location: Inicio_sesion.php');
+}
+?>
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+  <title>Informacion Paciente</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="assets/LOGOUC.png" type="image/x-icon"/>
+
+  <link rel="stylesheet" href="style5.css">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+<body>
+<?php
+
+if (isset($_GET["id"]) and $_GET["id"]<>""){
+	$sql="SELECT * from graph;";
+	$result=mysqli_query($conexion,$sql);
+	if ($result== true ){
+			 ?>
+	<div style="text-align: right;">
+		<p align="right" color="black">Bienvenid@
+			<?php 
+				echo $nombreusuario."!";
+			?>
+		</p>
+		<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>"  method="post">
+			<input  class="botonc" type="submit" value="Cerrar Sesión" name="cerrar">
+		</form>
+	<div align="center"><img src="assets/LOGOUC.png" width="110" height="100">
+	<br/><br/><br/>
+	<?php $codigo = $_GET["id"]; ?>
+	<H1>Informacion del Paciente <?php echo $codigo; ?> <H1>
+	</div>
+		</div>
+	<div align = center>
+
+	<br/>
+	<div style="text-align:center;" style="color:#000000;"><font size = 4>
+	<p id='container'>
+		<?php
+		$data = array();
+		while($mostrar=mysqli_fetch_array($result)){
+			$data[] = $mostrar['ppm'];
+		}
+		?>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                var chart;
+                $(document).ready(function() {
+                    chart = new Highcharts.Chart({
+                        chart: {
+                            renderTo: 'container',
+                            type: 'line',
+                            marginRight: 130,
+                            marginBottom: 25
+                        },
+                        series: {
+                            name: 'Tiempo (s)',
+                            data: [<?php echo join($data, ',') ?>]
+                        },
+			title:{
+                		text:"Gráfica Temporal PPM"
+            		}]
+
+                    });
+                });
+            });
+
+            </script>
+
+	</font>
+	</p>
+	</div>
+
+	<?php
+
+	}else { ?>
+		<p>Servicio interrumpido</p>
+		<?php
+	}
+}else {?>
+	<p>No se ha identificado cúal registro visualizar</p>
+	<?php
+}
+?>
+<br/><br/><br/>
+<a class="botons" href="BDS.php"><font size="5">Regresar</font></a>
+</div>
+</body>
+</head>
+<body>
+<script src="js/highcharts.js"></script>
+<script src="js/exporting.js"></script>
+
+
+    </body>
+</html>
+

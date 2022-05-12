@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: scroll;
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color:white;
+  background-size: cover;
+  font-size: 16px;
+}
+
+.form-register {
+  width: 400px;
+  background: #0000007a;
+  padding: 30px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 4px;
+  font-family: 'calibri';
+  color: black;
+  box-shadow: 7px 13px 37px #000;
+}
+.margen{
+margin-left: 300px;
+margin-right: 300px;
+}
+.form-register h4 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.controls {
+  width: 250px;
+  background: #0000001f;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid black;
+  font-family: 'calibri';
+  font-size: 18px;
+  color: #FFF6F6;
+}
+.controldate {
+  width: 170px;
+  background: #0000001f;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid black;
+  font-family: 'calibri';
+  font-size: 18px;
+  color: #FFF6F6;
+}
+
+.controltime {
+  width: 100px;
+  background: #0000001f;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid white;
+  font-family: 'calibri';
+  font-size: 18px;
+  color: #FFF6F6;
+}
+
+.controlp {
+  width: 60px;
+  background: #0000001f;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid black;
+  font-family: 'calibri';
+  font-size: 18px;
+  color: #FFF6F6;
+}
+
+.controlg {
+  width: 300px;
+  background: #0000001f;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid white;
+  font-family: 'calibri';
+  font-size: 18px;
+  color: black;
+}
+
+.controlgi {
+  width: 700px;
+  background: #0000001f;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid black;
+  font-family: 'calibri';
+  font-size: 18px;
+  color: black;
+}
+
+.form-register p {
+  height: 20px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.form-register a {
+  color: black;
+  text-decoration: none;
+}
+
+.form-register a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.form-register .botons {
+  width: 100%;
+  background: #AAAAAA;
+  border: 1px solid #AAAAAA;
+  padding: 12px;
+  color: black;
+  margin: 16px 0;
+  font-size: 16px;
+  border-radius: 11px;
+
+}
+.botons {
+  width: 200px;
+  background: #AAAAAA;
+  border: 1px solid #AAAAAA;
+  padding: 12px;
+  color: black;
+  margin: 16px 0;
+  font-size: 20px;
+  border-radius: 11px;
+
+}
+
+.boton{
+    text-decoration: none;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 28px;
+    color: white;
+    background-color: #AAAAAA;
+    border-radius: 19px;
+
+  }

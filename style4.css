@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  color: #000000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #FFFFFF;
+  background-size: cover;
+  overflow: scroll;
+  font-size: 17px;
+}
+.fondoh1{
+  background-color: #FFFFFF;
+}
+.boton{
+    text-decoration: none;
+    padding: 15px;
+    font-weight: 600;
+    font-size: 24px;
+    color: white;
+    background-color: #AAAAAA;
+    border-radius: 10px;
+
+  }
+  .botonc{
+    text-decoration: none;
+    padding: 7px;
+    font-weight: 600;
+    font-size: 12px;
+    color: white;
+    background-color: #AAAAAA;
+    border-radius: 8px;
+
+  }
+  .botonc:hover {
+    color: black;
+  }
