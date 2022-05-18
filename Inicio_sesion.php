@@ -1,3 +1,8 @@
+<?php
+ob_start();
+session_start();
+
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
@@ -55,38 +60,39 @@
 	c-0.297,0.421-0.586,0.794-0.837,1.079L35,31.623v4.125c0,1.77,0.983,3.361,2.566,4.153l9.553,4.776
 	C49.513,45.874,51,48.28,51,50.957V54z"></path></svg></span>
             <h3 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">Iniciar Sesión</h3>
+            
 <?php 
 if (isset($_POST['iniciar'])){
 	$servidor= "pulsioximetrotelemedicina.mysql.database.azure.com";
-	$db= "Pacientes";
-	$nombreusuario = "Administrador";
-	$password = "intell262";
+	$db= "prueba";
+	$nombreusuario = $_POST['username'];
+	$password = $_POST['password'];
 	
-	$con = mysqli_init(); 
-	mysqli_ssl_set($con,NULL,NULL, NULL, NULL, NULL); 
-	mysqli_real_connect($conn, "pulsioximetrotelemedicina.mysql.database.azure.com", "AdminDb", "Pulsioximetr0#2022*", "Pacientes", 3306, MYSQLI_CLIENT_SSL);
-	
-	$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
-	    if($conexion->connect_error){
-	       	die("Usuario no registrado: " . $conexion->connect_error);
+	$con = new mysqli($servidor, $nombreusuario, $password, $db);
+	    if($con->connect_error){
+	    	die("Conn failed".$con->connect_error);
 	   ?> 
-	    	<h5><?php echo "¡Usuario o contraseña incorrectos!" ?> </h5>
+	    	<h5>¡Usuario o contraseña incorrectos!</h5>
            <?php
-	    }else {
+	    }else{
 		//echo "Conexión Exitosa..";
-		session_start();
 		$_SESSION['nombreusuario'] = $nombreusuario;
 		$_SESSION['password'] = $password;
-		header('Location: BDS.php');
-		return;
+		header('Location: /BDS.php');
+		die('Header did not work!');
+		exit();
 	     }
-}
+}else{
+
 ?>
+</body>
+</html>
+
             <div class="u-form u-login-control u-white u-form-1">
-              <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" id="form_session"  method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-20 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 30px;">
+              <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" id="form_session"  method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-20 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 30px;">
                 <div class="u-form-group u-form-name">
                   <label for="username" class="u-label">Usuario *</label>
-                  <input name="username" id="username" placeholder="Usuario" type="text" placeholder="Ingrese su nombre de usuario" class="u-grey-5 u-input u-input-rectangle u-input-1" required="">
+                  <input name="username" id="username" type="text" placeholder="Ingrese su nombre de usuario" class="u-grey-5 u-input u-input-rectangle u-input-1" required="">
                 </div>
                 <div class="u-form-group u-form-password">
                   <label for="password" class="u-label">Contaseña *</label>
@@ -97,7 +103,7 @@ if (isset($_POST['iniciar'])){
                   <label for="checkbox-a30d" class="u-label">Recordarme</label>
                 </div>
                 <div class="u-align-right u-form-group u-form-submit">
-                  <input class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-hover-custom-color-3 u-btn-1" type="submit" value="Iniciar Sesión" name="iniciar">
+                  <input class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-hover-custom-color-3 u-btn-1" type="submit" value="Iniciar Sesión" name="iniciar" id="iniciar">
                 </div>
                 <input type="hidden" value="" name="recaptchaResponse">
               </form>
@@ -107,5 +113,6 @@ if (isset($_POST['iniciar'])){
         </div>
       </div>
     </section>
+    <?php } ?>
 </body>
 </html>

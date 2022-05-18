@@ -6,7 +6,7 @@ if (!$_SESSION){
 else{
 	$nombreusuario=$_SESSION['nombreusuario'] ;
 	$password=$_SESSION['password'];
-	$servidor= "localhost";
+	$servidor= "pulsioximetrotelemedicina.mysql.database.azure.com";
 	$db= "prueba";
 	$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
 }

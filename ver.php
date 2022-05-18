@@ -6,7 +6,7 @@ if (!$_SESSION){
 else{
 	$nombreusuario=$_SESSION['nombreusuario'] ;
 	$password=$_SESSION['password'];
-	$servidor= "localhost";
+	$servidor= "pulsioximetrotelemedicina.mysql.database.azure.com";
 	$db= "prueba";
 	$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
 }
@@ -28,14 +28,15 @@ else{
 <html class="no-js" lang="zxx">
 <head>
 	<title>Base de Datos</title>
-	<link rel="stylesheet" href="style4.css">
+	<link rel="stylesheet" href="style5.css">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<link rel="icon" href="assets/LOGOUC.png" type="image/x-icon"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>BDS</title>
+    <title>Informacion Paciente</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
 <link rel="stylesheet" href="BDS.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
@@ -57,7 +58,6 @@ else{
 </head>
 <body class="u-body">
 <?php
-
 if (isset($_GET["id"]) and $_GET["id"]<>""){
 	$sql="SELECT * from userval_".$_GET["id"].";";
 	$result=mysqli_query($conexion,$sql);
@@ -72,9 +72,9 @@ if (isset($_GET["id"]) and $_GET["id"]<>""){
 		</form>
         <h3 class="u-text u-text-default u-text-1">PulsiOxímetro</h3>
 		<?php 
-			$sql="SELECT * from datos;";
-			$result=mysqli_query($conexion,$sql);
-			if ($result== true ){
+			$sql2="SELECT * from datos;";
+			$result2=mysqli_query($conexion,$sql2);
+			if ($result2== true ){
 		 ?>
         <h6 class="u-text u-text-default u-text-2">Bienvenido 
 			<?php 
@@ -94,9 +94,9 @@ if (isset($_GET["id"]) and $_GET["id"]<>""){
 	<br/>
 	<div id='container' style="height: 200px">
 		<?php
-		$data = array();
+		$data = [];
 		while($mostrar=mysqli_fetch_array($result)){
-			$data[] = $mostrar['ppm'];
+			array_push($data,$mostrar['ppm']);
 		}
 		?>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -142,6 +142,7 @@ if (isset($_GET["id"]) and $_GET["id"]<>""){
 }else {?>
 	<p>No se ha identificado cúal registro visualizar</p>
 	<?php
+}
 }
 ?>
 <br/><br/><br/>
